@@ -1,11 +1,9 @@
-# Политика конфиденциальности
+# Политика конфиденциальности · Privacy Policy
 
-**DSH Remote** (`ai.dshm.client.app`) · [English below](#privacy-policy-english-summary)
+**DDeck** — мобильный клиент DeepSeek Harness
 
-**DSH Remote** — мобильный клиент DeepSeek Harness
-
-**Приложение:** DSH Remote (пакет `ai.dshm.client.app`)
-**Дата:** 19 октября 2026 г.
+**Приложение:** DDeck (пакет `app.ddeck.client`)
+**Дата:** 26 октября 2026 г. (бета 0.9.1-beta)
 
 ## Коротко
 
@@ -18,7 +16,7 @@
 
 | Что | Зачем | Где |
 |---|---|---|
-| Адрес компьютера (например `https://192.168.1.10:3443`) и его название | чтобы подключиться к нему снова | на телефоне, в зашифрованном виде |
+| Адрес компьютера (например `https://192.168.1.10:3449`) и его название | чтобы подключиться к нему снова | на телефоне, в зашифрованном виде |
 | Ключ устройства (device token) | заменяет пароль: по нему компьютер узнаёт телефон | на телефоне, зашифрован AES-256-GCM, ключ шифрования — в Android Keystore и не покидает устройство |
 | Сертификат компьютера (CA) | чтобы замечать подмену компьютера в сети | на телефоне, в зашифрованном виде |
 
@@ -31,9 +29,9 @@ Android.
 - **На ваш компьютер** — то, что вы делаете в интерфейсе: сообщения, команды,
   файлы. Приложение открывает интерфейс, который отдаёт ваш компьютер, и передаёт
   ему ваши действия. Это тот же обмен, что и в браузере на вашем компьютере.
-- **На ваш сервер (необязательно)** — если вы сами настроили удалённый доступ
-  через свой VPS, соединение идёт через него. Этот сервер ваш, приложение лишь
-  использует адрес, который вы ввели.
+- **Через сеть Tailscale** (если используете удалённый доступ) — соединение идёт
+  напрямую между вашими устройствами или через инфраструктуру Tailscale; это ваша
+  сеть, отдельного сервера DDeck нет.
 - **Разработчику приложения — ничего.** В приложении нет аналитики, отчётов о
   сбоях, рекламных и иных SDK, отправляющих данные третьим лицам.
 
@@ -41,14 +39,16 @@ Android.
 
 | Разрешение | Когда используется |
 |---|---|
-| `INTERNET`, `ACCESS_NETWORK_STATE` | соединение с вашим компьютером |
+| `INTERNET` | соединение с вашим компьютером |
+| `VIBRATE` | короткий тактильный отклик на кнопки дока |
+| `FOREGROUND_SERVICE`, `FOREGROUND_SERVICE_DATA_SYNC` | удержать сессию в фоне, пока ждём завершения задачи |
 | `CAMERA` | только когда вы нажимаете «Сканировать QR с компьютера»: читается QR-код приглашения |
 | `POST_NOTIFICATIONS` | локальные уведомления о завершении задачи; текст готовит ваш компьютер, уведомление не покидает телефон |
 
 ## Чего приложение не делает
 
 - не ищет компьютеры в сети без вашего действия и не рассылает данные по локальной
-  сети (обнаружение доступно в библиотеке, но интерфейс его не запускает);
+  сети (обнаружение в этой бете выключено);
 - не собирает контакты, местоположение, идентификаторы устройства и рекламы;
 - не отправляет ваши сообщения и содержимое сессий разработчику или третьим лицам;
 - не устанавливает и не выполняет код, полученный от разработчика. Приложение
@@ -74,13 +74,13 @@ Android.
 
 ## Контакт
 
-Вопросы: **mozhanovsasha@gmail.com**
+Вопросы и сообщения об уязвимостях: [приватный security advisory на GitHub](https://github.com/nemezida1337/ddeck-client/security/advisories/new).
 
 ---
 
 # Privacy Policy (English summary)
 
-DSH Remote (`ai.dshm.client.app`) is a remote control for **your own** computer
+DDeck (`app.ddeck.client`) is a remote control for **your own** computer
 running DeepSeek Harness. The developer operates no servers and collects nothing:
 there is no analytics, no crash reporting and no advertising SDK in the app.
 
@@ -89,13 +89,15 @@ there is no analytics, no crash reporting and no advertising SDK in the app.
   AES-256-GCM under a key held in the Android Keystore, which never leaves the
   device.
 - **Sent to:** your computer (the messages and commands you type, exactly as a
-  browser on that computer would), and — only if you configured it yourself —
-  through your own VPS for remote access.
+  browser on that computer would), and — only if you use remote access — over
+  your own Tailscale tailnet. The developer operates no relay server.
 - **Sent to the developer:** nothing.
 - **Permissions:** network (connection), camera (only when you tap "Scan QR"),
-  notifications (local task notifications prepared by your computer).
+  notifications (local task notifications prepared by your computer), vibration
+  (dock button feedback), and a data-sync foreground service while a task runs
+  in the background.
 - **Deleting data:** "Forget" removes one computer from the phone; uninstalling the
   app removes everything, including the Keystore key. Revoking the device on the
   computer is a separate action performed there.
 - **Children:** not directed at children.
-- **Contact:** mozhanovsasha@gmail.com
+- **Contact:** [private security advisory on GitHub](https://github.com/nemezida1337/ddeck-client/security/advisories/new)
