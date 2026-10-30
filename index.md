@@ -29,9 +29,10 @@ Android.
 - **На ваш компьютер** — то, что вы делаете в интерфейсе: сообщения, команды,
   файлы. Приложение открывает интерфейс, который отдаёт ваш компьютер, и передаёт
   ему ваши действия. Это тот же обмен, что и в браузере на вашем компьютере.
-- **Через сеть Tailscale** (если используете удалённый доступ) — соединение идёт
-  напрямую между вашими устройствами или через инфраструктуру Tailscale; это ваша
-  сеть, отдельного сервера DDeck нет.
+- **Через вашу сеть** (если используете удалённый доступ) — либо напрямую по
+  Tailscale (соединение идёт между вашими устройствами или через инфраструктуру
+  Tailscale), либо через **ваш собственный VPS/relay**: сервер администрируете вы,
+  отдельного сервера DDeck у разработчика нет.
 - **Разработчику приложения — ничего.** В приложении нет аналитики, отчётов о
   сбоях, рекламных и иных SDK, отправляющих данные третьим лицам.
 
@@ -65,7 +66,7 @@ Android.
 - Удаление приложения удаляет всё: записи о компьютерах и ключ шифрования в
   Keystore. Восстановить их нельзя, потребуется сопряжение заново.
 - Чтобы отозвать доступ устройства на компьютере, удалите его в панели
-  «Мобильный доступ» на самом компьютере — это отдельное действие, и приложение
+  «DDeck» на самом компьютере — это отдельное действие, и приложение
   не может его отменить.
 
 ## Изменения
@@ -90,7 +91,8 @@ there is no analytics, no crash reporting and no advertising SDK in the app.
   device.
 - **Sent to:** your computer (the messages and commands you type, exactly as a
   browser on that computer would), and — only if you use remote access — over
-  your own Tailscale tailnet. The developer operates no relay server.
+  your own Tailscale tailnet or through your own VPS relay. The developer operates
+  no relay server of its own.
 - **Sent to the developer:** nothing.
 - **Permissions:** network (connection), camera (only when you tap "Scan QR"),
   notifications (local task notifications prepared by your computer), vibration
